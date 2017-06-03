@@ -1,0 +1,21 @@
+version: '3.2'
+
+volumes:
+  jenkins-home:
+
+services:
+  jenkins:
+    image: jenkins-docker
+    build: .
+    restart: unless-stopped
+    ports:
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+    volumes:
+      - jenkins-home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: jenkins-docker
+        
+
