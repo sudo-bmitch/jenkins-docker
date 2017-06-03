@@ -5,7 +5,7 @@ ARG GOSU_VERSION=1.10
 # switch to root, let the entrypoint drop back to jenkins
 USER root
 
-# install other Debian convenience packages
+# install debian packages, gosu, and docker
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
      vim \
@@ -18,24 +18,7 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-# switching to jenkins user is moved into the entrypoint
-# USER jenkins
+# entrypoint is used to update docker gid and revert back to jenkins user
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
-
-# install plugins
-#RUN install-plugins.sh  \
-
-  #blueocean \
-  #disable-failed-job \
-  #disk-usage \
-  #docker-plugin \
-  #docker-workflow \
-  #github-pullrequest \
-  #gitlab-plugin \
-  #monitoring \
-  #postbuild-task \
-  #role-strategy \
-  #tasks \
-  #workflow-aggregator \
 
