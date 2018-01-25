@@ -16,5 +16,5 @@ if ! groups jenkins | grep -q docker; then
 fi
 
 # drop access to jenkins user and run jenkins entrypoint
-exec gosu jenkins /bin/tini -- /usr/local/bin/jenkins.sh "$@"
+exec gosu jenkins /sbin/tini -- /usr/local/bin/jenkins.sh "$@"
 
