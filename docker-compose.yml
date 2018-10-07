@@ -5,7 +5,7 @@ volumes:
 
 services:
   jenkins:
-    image: jenkins-docker
+    image: localhost:5000/jenkins-docker
     build: .
     restart: unless-stopped
     ports:
