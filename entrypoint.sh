@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# By: Brandon Mitchell <public@bmitch.net>
+# License: MIT
+# Source Repo: https://github.com/sudo-bmitch/jenkins-docker
+
 set -x
 
 # configure script to call original entrypoint
