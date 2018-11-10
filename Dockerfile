@@ -26,8 +26,8 @@ RUN dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
  && gosu nobody true 
 
 # install docker
-ARG DOCKER_VERSION==18.06.1~ce~3-0~debian
-# ARG DOCKER_VERSION=
+ARG DOCKER_CLI_VERSION==5:18.09.0~3-0~debian-stretch
+# ARG DOCKER_CLI_VERSION=
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
  && add-apt-repository \
      "deb [arch=amd64] https://download.docker.com/linux/debian \
@@ -35,9 +35,10 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
      stable" \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    docker-ce${DOCKER_VERSION} \
+    docker-ce-cli${DOCKER_CLI_VERSION} \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
+ && groupadd -r docker \
  && usermod -aG docker jenkins
 
 # entrypoint is used to update docker gid and revert back to jenkins user
