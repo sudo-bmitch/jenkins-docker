@@ -26,7 +26,7 @@ RUN dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
  && gosu nobody true 
 
 # install docker
-ARG DOCKER_CLI_VERSION==5:18.09.0~3-0~debian-stretch
+ARG DOCKER_CLI_VERSION==5:18.09.2~3-0~debian-stretch 
 # ARG DOCKER_CLI_VERSION=
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
  && add-apt-repository \
