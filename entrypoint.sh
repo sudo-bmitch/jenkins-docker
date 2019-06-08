@@ -22,7 +22,13 @@ if [ "$(id -u)" = "0" ]; then
 
   # if they don't match, adjust
   if [ ! -z "$SOCK_DOCKER_GID" -a "$SOCK_DOCKER_GID" != "$CUR_DOCKER_GID" ]; then
-    groupmod -g ${SOCK_DOCKER_GID} -o docker
+    if [ -z "$CUR_DOCKER_GID" ]; then
+      # add docker group if not created
+      groupadd -g ${SOCK_DOCKER_GID} -o docker
+    else
+      # modify existing
+      groupmod -g ${SOCK_DOCKER_GID} -o docker
+    fi
   fi
   if ! groups jenkins | grep -q docker; then
     usermod -aG docker jenkins
