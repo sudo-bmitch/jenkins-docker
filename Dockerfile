@@ -26,7 +26,7 @@ RUN dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
  && gosu nobody true 
 
 # install docker
-ARG DOCKER_CLI_VERSION==5:18.09.2~3-0~debian-stretch 
+ARG DOCKER_CLI_VERSION==5:19.03.0~3-0~debian-stretch
 # ARG DOCKER_CLI_VERSION=
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
  && add-apt-repository \
@@ -52,7 +52,7 @@ ARG VCS_REF
 ARG IMAGE_PATCH_VER=0
 LABEL \
     org.label-schema.build-date=$BUILD_DATE \
-    org.label-schema.docker.cmd="docker run -d -p 8080:8080 -v \"$$(pwd)/jenkins-home:/var/jenkins_home\" -v /var/run/docker.sock:/var/run/docker.sock bmitch3020/jenkins-docker" \
+    org.label-schema.docker.cmd="docker run -d -p 8080:8080 -v \"$$(pwd)/jenkins-home:/var/jenkins_home\" -v /var/run/docker.sock:/var/run/docker.sock sudobmitch/jenkins-docker" \
     org.label-schema.description="Jenkins with docker support, Jenkins ${JENKINS_VER}, Docker ${DOCKER_VER}" \
     org.label-schema.name="bmitch3020/jenkins-docker" \
     org.label-schema.schema-version="1.0" \
