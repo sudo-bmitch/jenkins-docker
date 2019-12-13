@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     ports:
       - target: 8080
-        published: 8080
+        published: 58080
         protocol: tcp
         mode: host
     volumes:
